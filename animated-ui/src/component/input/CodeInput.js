@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 
-import { FadeIn } from '../../css';
+import { fadeIn } from '../../css';
 import { Space } from '../layout';
 
 const Container = styled.div`
@@ -38,7 +38,7 @@ const HiddenInput = styled.input`
 `;
 const NumberText = styled.div`
   ${({ hasValue }) => hasValue ? `
-    ${FadeIn}
+    ${fadeIn}
   ` : `
   `}
 `;

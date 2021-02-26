@@ -1,26 +1,65 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import logo from './logo.svg';
 import './App.css';
 
-import { CodeInput, Select } from './component';
+import { Button, CodeInput, Select, SearchInput } from './component';
+
+const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+`;
+const Showcase = styled.div`
+  display: flex;
+
+  width: 500px;
+  height: 300px;
+
+  outline: 1px solid #999;
+
+  >div {
+    margin: auto auto;
+  }
+`;
 
 function App() {
   const [code, setCode] = useState('');
+  const [q, setQ] = useState('');
+  const [v, setV] = useState('1');
 
   return (
     <div className="App" style={{ padding: '50px 50px' }}>
-      {/*}
-      <CodeInput
-        value={code}
-        onChange={setCode}
-      />
-  */}
+      <Container>
+        <Showcase>
+          <CodeInput
+            value={code}
+            onChange={setCode}
+          />
+        </Showcase>
 
-      <Select
-        items={['1', 'b', 'c']}
-        value={'1'}
-        onChange={() => {}}
-      />
+        <Showcase>
+          <Select
+            items={['1', 'b', 'c']}
+            value={v}
+            onChange={setV}
+          />
+        </Showcase>
+
+        <Showcase>
+          <Button
+          >
+            asdfsadf
+          </Button>
+        </Showcase>
+
+        <Showcase>
+          <SearchInput
+            value={q}
+            onChange={setQ}
+          />
+        </Showcase>
+      </Container>
     </div>
   );
 }

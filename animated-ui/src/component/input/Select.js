@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { fromTo } from '../../css';
 
 const Container = styled.div`
   position: relative;
@@ -54,6 +55,64 @@ const ItemContainer = styled.div`
     height: 0px;
   `}
 `;
+const SelectedText = styled.div`
+  position: absolute;
+  left: 0px;
+  top: 0px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  width: 100%;
+  height: 32px;
+
+  animation:
+    top2To 0.5s ease,
+    opacity2To 0.5s ease;
+  animation-delay: 0.05s;
+  animation-fill-mode: forwards;
+
+  @keyframes top2To {
+    from {
+      top: 50px;
+    }
+    to {
+      top: 0px;
+    }
+  }
+  @keyframes opacity2To {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+`;
+const FlyawayText = styled.div`
+  position: absolute;
+  left: 0px;
+  top: 0px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 1;
+  width: 100%;
+  height: 32px;
+
+  ${fromTo('top', '0px', '-50px')}
+  ${fromTo('opacity', '1', '0')}
+
+  animation:
+    topTo 0.5s ease,
+    opacityTo 0.5s ease;
+  animation-delay: 0.05s;
+  animation-fill-mode: forwards;
+`;
 const Item = styled.div`
   display: flex;
 
@@ -75,6 +134,7 @@ export const Select = ({
   value,
   onChange,
 }) => {
+  const [prevValue, setPrevValue] = useState('');
   const [focused, setFocused] = useState(false);
   
   return (
@@ -86,6 +146,7 @@ export const Select = ({
         {items.map(x => (
           <Item
             onClick={() => {
+              setPrevValue(value);
               onChange(x);
               setFocused(false);
             }}
@@ -98,7 +159,16 @@ export const Select = ({
         focused={focused}
         onClick={() => setFocused(true)}
       >
-        {value}
+        <SelectedText
+          key={value}
+        >
+          {value}
+        </SelectedText>
+        <FlyawayText
+          key={prevValue}
+        >
+          {prevValue}
+        </FlyawayText>
       </SelectBody>
     </Container>
   );
