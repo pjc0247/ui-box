@@ -26,7 +26,7 @@ const Showcase = styled.div`
 function App() {
   const [code, setCode] = useState('');
   const [q, setQ] = useState('');
-  const [v, setV] = useState('1');
+  const [v, setV] = useState('강아지');
 
   return (
     <div className="App" style={{ padding: '50px 50px' }}>
@@ -40,7 +40,7 @@ function App() {
 
         <Showcase>
           <Select
-            items={['1', 'b', 'c']}
+            items={['강아지', '개', '강아지2']}
             value={v}
             onChange={setV}
           />
