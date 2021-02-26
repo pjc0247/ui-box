@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
+import { FadeIn } from '../../css';
 
 import { Space } from '../layout';
 
@@ -12,6 +13,8 @@ const InputContainer = styled.div`
   flex-direction: row;
 `;
 const InputBox = styled.div`
+  height: 20px;
+
   transition: all 0.5s ease;
 
   ${({ focused }) => focused ? `
@@ -25,46 +28,57 @@ const InputBox = styled.div`
     border-bottom: 2px solid #dcdcdc;
   `}
 `;
-const Input = styled.input`
-  border: none;
-  color: transparent;
-  text-shadow: 0 0 0 black;
+const HiddenInput = styled.input`
+  width: 0px;
+  height: 0px;
+  transform: scale(0);
+  padding: 0;
 
-  &:focus {
-    outline: none;
-  }
+  box-sizing: border-box;
+`;
+const NumberText = styled.div`
+  ${({ hasValue }) => hasValue ? `
+    ${FadeIn}
+  ` : `
+  `}
 `;
 
 export const CodeInput = ({
   value,
   onChange,
 }) => {
-  const inputs = useRef([]);
+  const hiddenInput = useRef();
   const [focused, setFocused] = useState(false);
-  const idx = value.length;
+  const idx = Math.min(5, value.length);
 
   return (
     <Container
-      onClick={() => setFocused(true)}
+      onClick={() => {
+        setFocused(true);
+        hiddenInput.current.focus();
+      }}
     >
       <Label>
         Code
       </Label>
       <InputContainer>
+        <HiddenInput
+          ref={hiddenInput}
+          value={value}
+          maxLength={6}
+          onChange={(e) => onChange(e.target.value)}
+        />
         {[0, 1, 2, 3, 4, 5].map(x => (
           <>
             <InputBox
               focused={focused}
               active={focused && idx === x}
             >
-              <Input
-                ref={(e) => inputs.current[x] = e}
-                maxLength={1}
-                onChange={(e) => {
-                  onChange(value + e.target.value);
-                  inputs.current[x + 1].focus();
-                }}
-              />
+              <NumberText
+                hasValue={value.length > x}
+              >
+                {value[x]}
+              </NumberText>
             </InputBox>
             {x !== 5 && (
               <Space
