@@ -13,7 +13,7 @@ const InputContainer = styled.div`
   flex-direction: row;
 `;
 const InputBox = styled.div`
-  height: 20px;
+  height: 25px;
 
   transition: all 0.5s ease;
 
