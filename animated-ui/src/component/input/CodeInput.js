@@ -5,8 +5,28 @@ import { fadeIn } from '../../css';
 import { Space } from '../layout';
 
 const Container = styled.div`
+  position: relative;
 `;
 const Label = styled.span`
+  position: absolute;
+
+  transition: all 0.5s ease;
+
+  ${({ focused }) => focused ? `
+    top: -25px;
+    left: 10px;
+
+    color: black;
+
+    font-size: 16px;
+  ` : `
+    top: 7px;
+    left: 10px;
+
+    color: #999;
+
+    font-size: 12px;
+  `}
 `;
 const InputContainer = styled.div`
   display: flex;
@@ -58,7 +78,9 @@ export const CodeInput = ({
         hiddenInput.current.focus();
       }}
     >
-      <Label>
+      <Label
+        focused={focused || value.length > 0}
+      >
         Code
       </Label>
       <InputContainer>
@@ -67,6 +89,7 @@ export const CodeInput = ({
           value={value}
           maxLength={6}
           onChange={(e) => onChange(e.target.value)}
+          onBlur={() => setFocused(false)}
         />
         {[0, 1, 2, 3, 4, 5].map(x => (
           <>
