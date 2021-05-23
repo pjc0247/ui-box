@@ -53,11 +53,15 @@ function App() {
         </Showcase>
 
         <Showcase>
-          <SearchInput
-            results={['Apple', 'Dogple', 'Catple', 'Lol']}
-            value={q}
-            onChange={setQ}
-          />
+          <div
+            style={{ transform: 'translateX(-150px)' }}
+          >
+            <SearchInput
+              results={['Apple', 'Dogple', 'Catple', 'Lol']}
+              value={q}
+              onChange={setQ}
+            />
+          </div>
         </Showcase>
 
         <Showcase>
