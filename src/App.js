@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import logo from './logo.svg';
-import './App.css';
 
 import { Button, CodeInput, Select, SearchInput } from './component';
 
@@ -29,7 +27,7 @@ function App() {
   const [v, setV] = useState('강아지');
 
   return (
-    <div className="App" style={{ padding: '50px 50px' }}>
+    <div style={{ padding: '50px 50px' }}>
       <Container>
         <Showcase>
           <CodeInput
@@ -55,6 +53,7 @@ function App() {
 
         <Showcase>
           <SearchInput
+            results={['Apple', 'Dogple', 'Catple', 'Lol']}
             value={q}
             onChange={setQ}
           />

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 
-import { fadeIn } from '../../css';
+import { Align, fadeIn } from '../../css';
 import { Space } from '../layout';
 
 const Container = styled.div`
@@ -18,7 +18,7 @@ const Label = styled.span`
 
     color: black;
 
-    font-size: 16px;
+    font-size: 13px;
   ` : `
     top: 7px;
     left: 10px;
@@ -57,6 +57,8 @@ const HiddenInput = styled.input`
   box-sizing: border-box;
 `;
 const NumberText = styled.div`
+  ${Align.JustifyCenter}
+
   ${({ hasValue }) => hasValue ? `
     ${fadeIn}
   ` : `

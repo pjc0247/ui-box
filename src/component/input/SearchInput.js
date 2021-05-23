@@ -153,6 +153,7 @@ const ResultItem = styled.div`
 `;
 
 export const SearchInput = ({
+  results,
   value,
   onChange,
 }) => {
@@ -165,18 +166,15 @@ export const SearchInput = ({
       setTimeout(() => {
         setShowInput(true);
       }, 750);
-    }
+    } else if (state === InputState.Inactive)
+      onChange('');
   }, [state]);
   useEffect(() => {
     if (value.length === 0) return;
 
     setTimeout(() => {
       setState(InputState.HasResult);
-    }, 3000);
-
-    setTimeout(() => {
-      setState(InputState.Inactive);
-    }, 6000);
+    }, 1000);
   }, [value]);
 
   const onClick = () => {
@@ -202,12 +200,13 @@ export const SearchInput = ({
             ref={inputRef}
             value={value}
             onChange={(e) => onChange(e.target.value)}
+            onBlur={() => setState(InputState.Inactive)}
           />
         )}
         {state === InputState.HasResult && (
           <>
             <ResultTopMargin />
-            {['asdf', 'bsadf', 'werwrw', '5151', 'helo'].map((x, idx) => (
+            {results.map((x, idx) => (
               <ResultItem
                 idx={idx}
               >

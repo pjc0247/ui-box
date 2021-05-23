@@ -66,7 +66,7 @@ const SelectedText = styled.div`
 
   opacity: 0;
   width: 100%;
-  height: 32px;
+  height: 40px;
 
   animation:
     top2To 0.5s ease,
@@ -102,7 +102,7 @@ const FlyawayText = styled.div`
 
   opacity: 1;
   width: 100%;
-  height: 32px;
+  height: 40px;
 
   ${fromTo('top', '0px', '-50px')}
   ${fromTo('opacity', '1', '0')}
