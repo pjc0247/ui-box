@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { Button, CodeInput, Select, SearchInput } from './component';
+import { CircularChart } from './component/chart';
 
 const Container = styled.div`
   display: flex;
@@ -56,6 +57,18 @@ function App() {
             results={['Apple', 'Dogple', 'Catple', 'Lol']}
             value={q}
             onChange={setQ}
+          />
+        </Showcase>
+
+        <Showcase>
+          <CircularChart
+            chunks={[
+              { color: '#E97778', value: 30 },
+              { color: '#89C7B6', value: 30 },
+              { color: '#FFD57E', value: 30 },
+              { color: '#9C6CC9', value: 10 },
+            ]}
+            width={16}
           />
         </Showcase>
       </Container>
