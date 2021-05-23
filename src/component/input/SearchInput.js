@@ -14,6 +14,8 @@ const InputState = {
 
 const Holder = styled.div`
   position: relative;
+
+  height: 42px;
 `;
 const Container = styled.div`
   position: absolute;
@@ -95,7 +97,7 @@ const SearchIcon = styled(_SearchIcon)`
   }}
 `;
 const Input = styled.input`
-  ${fadeIn}
+  ${fadeInWithDelay(0.05)}
   
   position: absolute;
   top: 12px;
@@ -106,6 +108,8 @@ const Input = styled.input`
   font-size: 24px;
 
   border: none;
+  background: transparent;
+
   &:focus {
     outline: none;
   }
@@ -166,8 +170,10 @@ export const SearchInput = ({
       setTimeout(() => {
         setShowInput(true);
       }, 750);
-    } else if (state === InputState.Inactive)
+    } else if (state === InputState.Inactive) {
       onChange('');
+      setShowInput(false);
+    }
   }, [state]);
   useEffect(() => {
     if (value.length === 0) return;
