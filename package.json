@@ -12,6 +12,9 @@
     "styled-components": "^5.2.1",
     "web-vitals": "^1.0.1"
   },
+  "devDependencies": {
+    "react-app-rewired": "^2.1.8"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
